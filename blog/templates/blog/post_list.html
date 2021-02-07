@@ -13,6 +13,16 @@
     <div>
         <h2><a href="">上山凌</a></h2><p>は面白くない</p>
         <p>頑張っていきます！ </p>
+
+{% for post in posts %}
+    <div>
+        <p>published: {{ post.published_date }}</p>
+        <h3><a href="">{{ post.title }}</a></h3>
+        <p>{{ post.text|linebreaksbr }}</p>
+    </div>
+{% endfor %}
+
+
     </div>
 　</body>    
 </html>
