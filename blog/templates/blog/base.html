@@ -1,29 +1,24 @@
 {% load static %}
 <html>
     <head>
-        <title>このブログは練習用です</title>
+        <title>練習用ブログです</title>
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-        <link href='//fonts.googleapis.com/css2?family=Hachi+Maru+Pop&display=swap" rel="stylesheet">' rel='stylesheet' type='text/css'>
+        <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="{% static 'css/blog.css' %}">
     </head>
     <body>
         <div class="page-header">
-            <h1><a href="/">練習用ブログ</a></h1>
+        {% if user.is_auhenticated %}
+            <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+        {% endif %}
+            <h1><a href="/">練習用Blog</a></h1>
         </div>
-
         <div class="content container">
             <div class="row">
                 <div class="col-md-8">
-                {% for post in posts %}
-                    <div class="post">
-                        <div class="date">
-                            {{ post.published_date }}
-                        </div>
-                        <h2><a href="">{{ post.title }}</a></h2>
-                        <p>{{ post.text|linebreaksbr }}</p>
-                    </div>
-                {% endfor %}
+                    {% block content %}
+                    {% endblock %}
                 </div>
             </div>
         </div>
